@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.cdnfonts.com/css/recoleta" rel="stylesheet" />
+    <title>Video Model CTA</title>
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        background: #000;
+        padding: 0;
+        font-family: "Recoleta";
+      }
+      * {
+        margin: 0;
+        box-sizing: border-box;
+        padding: 0;
+      }
+      .bottom_cta {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        background: #fff;
+        padding: 5px;
+        width: 170px;
+        height: 52px;
+        border-radius: 500px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 10px;
+      }
+      .video_box {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        overflow: hidden;
+        position: relative;
+        cursor: pointer;
+      }
+      .video_box video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+      .play_icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 20px;
+        height: 20px;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .play_icon svg {
+        width: 12px;
+        height: 12px;
+        fill: white;
+      }
+      .cta_text {
+        font-size: 16px;
+      }
+      .bottom_cats {
+        width: 90%;
+        height: 56px;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 50px;
+        background: #f6f7f7;
+        padding: 5px 5px 5px 15px;
+        cursor: pointer;
+      }
+      .mobile_play {
+        width: 90%;
+        max-width: 467px;
+        margin: auto;
+        padding: 10px;
+        background-color: #fff;
+        backdrop-filter: blur(0.6rem);
+        border-radius: 32px;
+        margin-bottom: 10px;
+      }
+      .video_ {
+        width: 100%;
+        max-width: 467px;
+        height: 260px;
+        height: 100%;
+        border-radius: 20px;
+      }
+
+      button {
+        background-color: rgba(255, 245, 85, 1);
+        padding: 5px 14px;
+        border-radius: 40px;
+        color: #000;
+        font-size: 14px;
+        height: 100%;
+        border: none;
+        font-family: "Recoleta";
+        cursor: pointer;
+      }
+      .actual_model {
+        width: 100%;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+      }
+      .actual_model.show {
+        opacity: 1;
+        visibility: visible;
+      }
+      p {
+        font-size: 14px;
+        text-align: left;
+      }
+      .cta_text {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="model">
+      <div class="actual_model">
+        <div class="mobile_play">
+          <video
+            class="video_"
+            src="https://www.datocms-assets.com/105899/1695210411-ep-1.mp4"
+            autoplay
+            loop
+            muted
+            playsinline
+          ></video>
+        </div>
+        <div class="bottom_cats">
+          <p>Lifre time free with single purchase</p>
+          <button>Buy now</button>
+        </div>
+      </div>
+      <div class="bottom_cta">
+        <div class="video_box">
+          <video
+            src="https://www.datocms-assets.com/105899/1695210411-ep-1.mp4"
+            autoplay
+            loop
+            muted
+            playsinline
+          ></video>
+          <div class="play_icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </div>
+        </div>
+        <p class="cta_text">Reserve now</p>
+      </div>
+    </section>
+    <script>
+      const trigger = document.querySelector(".bottom_cta");
+      const openModel = document.querySelector(".actual_model");
+
+      // Open modal when clicking bottom CTA
+      trigger.addEventListener("click", function () {
+        openModel.classList.toggle("show");
+      });
+
+      // Close modal when clicking anywhere inside the modal
+      openModel.addEventListener("click", function () {
+        openModel.classList.remove("show");
+      });
+
+      // Prevent closing when clicking on the video box
+      document
+        .querySelector(".mobile_play")
+        .addEventListener("click", function (event) {
+          event.stopPropagation(); // Stops click from reaching .actual_model
+        });
+    </script>
+  </body>
+</html>
